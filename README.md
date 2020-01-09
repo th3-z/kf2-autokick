@@ -1,46 +1,57 @@
+kf2-auto-kick
+=============
 
-# Feature
+A Violentmonkey userscript for Killing Floor 2 server that automatically kicks
+players based on their perk or level. This modification does not affect the
+server's ranked status.
 
-* You are able to auto-kick level or perk without mutator as Ranked Server.
-* I'm not original creator, I fixed a issue and improved, add perk-kick features.  
+Originally authored by [pedr0](https://forums.tripwireinteractive.com/forum/killing-floor-2/killing-floor-2-modifications/general-modding-discussion-ad/beta-mod-releases/115511-webadmin-auto-kick-players-by-perk-level).
 
-Original script is here. (not available)  
-https://forums.tripwireinteractive.com/forum/killing-floor-2/killing-floor-2-modifications/general-modding-discussion-ad/beta-mod-releases/115511-webadmin-auto-kick-players-by-perk-level
 
-# Install
+## Installation
 
-1. Install FireFox or Chrome addon Violentmonkey https://addons.mozilla.org/ja/firefox/addon/violentmonkey/  
-2. Import the zip file from Violentmonkey setting.  
-3. Backup and OverWrite 3 files:  
-console.html, current_players.html, current_players_row.inc  
-location: \<KF2Server\>\KFGame\Web\ServerAdmin  
+These instructions are for Violentmonkey but this userscript should also be
+compatible with other userscript addons such as Tampermonkey.
 
-# Run
+### Userscript setup
 
-1. Launch KF2 Server.bat
-2. Open brower FireFox or Chrome.
-3. Move to WebAdmin. (default: http://localhost:8080)  
+1. Install Violentmonkey for [FireFox](https://addons.mozilla.org/ja/firefox/addon/violentmonkey/)
+    or [Chrome](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag).
+2. Open Violentmonkey's dashboard (:gear:).
+3. Open the settings tab.
+4. Click 'Import from zip' and find `kf2-auto-kick.zip`.
 
-# Confirm
+### Server setup
 
-It dose works if you see a number 1 with Violentmonkey icon.
+1. Using a file browser, navigation to your Killing Floor 2 server install
+    location.
+2. Merge the provided `ServerAdmin` folder from `kf2-auto-kick.zip` with
+    `<kf2-server\>\KFGame\Web\ServerAdmin`.
+3. Restart your Killing Floor 2 server.
 
-# Where is setting which can restrict level or perk?
 
-1. Click MANAGEMENT CONSOLE in WebAdmin.
-2. Edit level or perk which you want to restrict. Changed setting is adapted in a few second.  
+## Running
 
-# What is a fixed issue and improved
+1. Launch your Killing Floor 2 server.
+2. Open your web browser with the userscript installed.
+3. Navigate to the webadmin panel (default: http://localhost:8080).
 
-I fixed and improved things are following:
+A visible '1' on Violentmonkey's widget indicates the script is running. The
+script will be active so long as you are logged into the webadmin panel, it
+does not matter which page you are on.
 
-* Previous auto-kick script could't kick specific player whose name is multi byte character. (e.g. Japanese, Chinese, Korea)  
-* No need to keep open AUTO-KICK page to enable auto-kick script. This script is valid each page in WebAdmin.
 
-# Can I do individual auto-kick setting for multiple server?	
+## Configuration
 
-Yes, the setting is independent per url and is stored individually.
+1. Navigate to the webadmin panel (default: http://localhost:8080)
+2. Open the 'Management Console' tab
+2. Adjust the level and perk auto-kick settings as required, the new settings will apply after a few seconds.
 
-# Does it run with Tampermonkey too?
+Settings are stored per-server so multiple servers can be managed
+independently.
 
-Yes, if your server under heavy load, Tampermonkey could be better.
+
+# Changes since pedr0's release
+
+* Fix issue with kicking players with multibyte chars in their name
+* No longer have to keep the 'auto-kick' page open

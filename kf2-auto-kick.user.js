@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         KF2auto-kick
+// @name         kf2-auto-kick
 // @namespace    monkey
 // @version      2.0
 // @description  auto kick Level and Perk
@@ -10,11 +10,10 @@
 // ==/UserScript==
 
 /**
- * テンプレートエンジンの変数<%player.name%>が2バイト文字であった場合、サーバから%EF%BF%BDに変換された、文字化けした変数を受け取る。
- * この時、直後の連想配列(key: value)のうちvalueが後ろ3バイト欠損する。
- * これはサーバが2バイト文字に対応できてない問題であり、スクリプトの不具合ではない。現状、<%player.name%>を
- * 受け取らないことで対処している。他にもJSON.parseが厳格すぎて" ' \n等の特殊記号でエラーを起こす。
- * やはり<%player.name%>を受け取らないのが現状のベストだ。
+ * If the template variable <%player.name%> contains multibyte characters they will be garbled.
+ * Instead you receive `%EF%BF%BD`, the utf-8 replacement char (�).
+ * This is an issue with the server not being able to handle multibyte chars, not a bug in this script.
+ * This is dealt with by not receving <%player.name%>, it is replaced with the string "anonymous".
  */
 
 let g_time_id;
