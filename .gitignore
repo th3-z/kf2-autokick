@@ -1,4 +1,8 @@
-.jsbeautifyrc
+# Releases
 *.zip
-backup/
+
+# Editor files
 *.code-workspace
+*.swp
+.*-swp
+
