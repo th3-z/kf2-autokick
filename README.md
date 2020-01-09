@@ -1,5 +1,5 @@
-KF2 Auto-kick
-=============
+KF2 Autokick
+============
 
 A Violentmonkey userscript for Killing Floor 2 server that automatically kicks
 players based on their perk or level. This modification does not affect the
