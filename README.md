@@ -1,4 +1,4 @@
-kf2-auto-kick
+KF2 Auto-kick
 =============
 
 A Violentmonkey userscript for Killing Floor 2 server that automatically kicks
@@ -17,16 +17,17 @@ compatible with other userscript addons such as Tampermonkey.
 
 1. Install Violentmonkey for [FireFox](https://addons.mozilla.org/ja/firefox/addon/violentmonkey/)
     or [Chrome](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag).
-2. Open Violentmonkey's dashboard (:gear:).
+2. Open Violentmonkey's dashboard :gear:.
 3. Open the settings tab.
-4. Click 'Import from zip' and find `kf2-auto-kick-2.1.0.zip`.
+4. Click 'Import from zip' and open `kf2-auto-kick-2.1.0.zip`.
 
 ### Server setup
 
 1. Using a file browser, navigation to your Killing Floor 2 server install
     location.
+2. Extract `kf2-auto-kick-2.1.0.zip` somewhere convenient.
 2. Merge the provided `ServerAdmin` folder from `kf2-auto-kick-2.1.0.zip` with
-    `<kf2-server\>\KFGame\Web\ServerAdmin`.
+    `kf2-server\KFGame\Web\ServerAdmin`.
 3. Restart your Killing Floor 2 server.
 
 
@@ -51,7 +52,7 @@ Settings are stored per-server so multiple servers can be managed
 independently.
 
 
-# Changes since pedr0's release
+## Changes since pedr0's release
 
 * Fix issue with kicking players with multibyte chars in their name
 * No longer have to keep the 'auto-kick' page open
