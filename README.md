@@ -5,7 +5,7 @@ A Violentmonkey userscript for Killing Floor 2 server that automatically kicks
 players based on their perk or level. This modification does not affect the
 server's ranked status.
 
-Originally authored by [pedr0](https://forums.tripwireinteractive.com/forum/killing-floor-2/killing-floor-2-modifications/general-modding-discussion-ad/beta-mod-releases/115511-webadmin-auto-kick-players-by-perk-level).
+Originally authored by [pedr0](https://forums.tripwireinteractive.com/forum/killing-floor-2/killing-floor-2-modifications/general-modding-discussion-ad/beta-mod-releases/115511-webadmin-auto-kick-players-by-perk-level), with additional contributions from [BEROCHLU](https://github.com/BEROCHLU/kf2-autokick-level-and-perk).
 
 
 ## Installation
