@@ -1,8 +1,10 @@
 <tr class="<%evenodd%>">
   <td style="background: <%player.teamcolor%>; color: <%player.teamcolor%>;"><%player.teamid%>&#160;</td>
-  <td>anonymous</td>
+  <td><%player.name%></td>
+  <!-- kf2-autokick -->
   <td><%player.perk.name%></td>
   <td class="center"><%player.perk.level%></td>
+  <!-- /kf2-autokick -->
   <td class="right"><%player.ping%></td>
   <td><%player.ip%></td>
   <td><%player.uniqueid%></td>
@@ -25,4 +27,23 @@
     </form>
   </td>
 </tr>
-<span class="kf2gameinfo" data-kf2gameinfo='{"perkName": "<%player.perk.name%>","perkLevel": "<%player.perk.level%>","dosh": "<%player.score%>","health": "<%player.pawn.health%>","kills": "<%player.kills%>","ping": "<%player.ping%>","ip": "<%player.ip%>","isAdmin": "<%player.admin%>","isSpectator": "<%player.spectator%>","id": "<%player.playerid%>","key": "<%player.playerkey%>"}'></span>
+<!-- kf2-autokick -->
+<span
+    class="kf2gameinfo"
+    data-kf2gameinfo='
+        {
+            "perkName": "<%player.perk.name%>",
+            "perkLevel": "<%player.perk.level%>",
+            "dosh": "<%player.score%>",
+            "health": "<%player.pawn.health%>",
+            "kills": "<%player.kills%>",
+            "ping": "<%player.ping%>",
+            "ip": "<%player.ip%>",
+            "isAdmin": "<%player.admin%>",
+            "isSpectator": "<%player.spectator%>",
+            "id": "<%player.playerid%>",
+            "key": "<%player.playerkey%>"
+        }
+    '
+></span>
+<!-- /kf2-autokick -->

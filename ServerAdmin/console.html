@@ -1,4 +1,5 @@
 <!-- #include file="header.inc" -->
+<!-- kf2-autokick -->
 <script>
 var perkMinLv;
 var perkMaxLv;
@@ -6,7 +7,6 @@ var arrKickperk = new Array(10);
 var allowLast;
 
 $( document ).ready(function() {
-
 	var arrKickperkInit = ["anonymous","anonymous","anonymous","anonymous","anonymous","anonymous","anonymous","anonymous","anonymous","anonymous"];
 
 	localStorage.getItem("storageMin") || (localStorage.setItem("storageMin", "0"), console.log("localStorage MinLv initialized") );
@@ -18,171 +18,166 @@ $( document ).ready(function() {
 	perkMaxLv = parseInt(localStorage.getItem("storageMax") );
 	arrKickperk = JSON.parse(localStorage.getItem("storageKickperk"));
 	allowLast = (localStorage.getItem("storageAllowLast") === 'true') ? true : false;
-	
 });
 
 </script>
+<!-- /kf2-autokick -->
 
 <div id="content">
-
+<!-- kf2-autokick -->
 <h2>Auto-Kick</h2>
 <div id="autoKickdv" class="section">
-<div id="SG_AutoKick" class="SettingsGroup ui-tabs-panel" style="display: block;">
-<dl>
-<dt title="Minimum Perk Level"><label for="autokick_MinimumPerkLevel" title="Everyone below this level will be kicked.">Allow Minimum Perk Level</label></dt>
-<dd class="">
-<select id="autokick_MinimumPerkLevel">
-</select>
-<script type="text/javascript">
-//<![CDATA[
-$( document ).ready(function() {
+    <div id="SG_AutoKick" class="SettingsGroup ui-tabs-panel" style="display: block;">
+        <dl>
+            <dt title="Minimum Perk Level">
+                <label for="autokick_MinimumPerkLevel" title="Everyone below this level will be kicked.">
+                    Allow Minimum Perk Level
+                </label>
+            </dt>
+            <dd class="">
+                <select id="autokick_MinimumPerkLevel">
+                </select>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $( document ).ready(function() {
+                        for(var i=0; i<=25; i++){
+                            $("#autokick_MinimumPerkLevel").append($("<option>").val(i).text(i) );
+                        }
 
-	for(var i=0; i<=25; i++){
+                        $('#autokick_MinimumPerkLevel').val(perkMinLv);
+                    });
 
-		$("#autokick_MinimumPerkLevel").append($("<option>").val(i).text(i) );
+                    $('#autokick_MinimumPerkLevel').change(function(){
+                        var newLv = this.value;
+                        perkMinLv = (!newLv) ? 0 : parseInt(newLv);
 
-	}
+                        localStorage.setItem("storageMin", perkMinLv);
+                        console.log("localStorage MinLv changed", perkMinLv)
+                    });
+                    //]]>
+                </script>
+            </dd>
 
-	$('#autokick_MinimumPerkLevel').val(perkMinLv);
+            <dt title="Maximum Perk Level">
+                <label for="autokick_MaximumPerkLevel" title="Everyone above this level will be kicked.">
+                    Allow Maximum Perk Level
+                </label>
+            </dt>
+            <dd class="">
+                <select id="autokick_MaximumPerkLevel">
+                </select>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $( document ).ready(function() {
+                        for(var i=0; i<=25; i++){
+                            $("#autokick_MaximumPerkLevel").append($("<option>").val(i).text(i) );
+                        }
 
-});
+                        $('#autokick_MaximumPerkLevel').val(perkMaxLv);
+                    });
 
-$('#autokick_MinimumPerkLevel').change(function(){
- 
- 	var newLv = this.value;
+                    $('#autokick_MaximumPerkLevel').change(function(){
+                            var newLv = this.value;
+                            perkMaxLv = (!newLv) ? 25 : parseInt(newLv);
 
- 	perkMinLv = (!newLv) ? 0 : parseInt(newLv);
+                            localStorage.setItem("storageMax", perkMaxLv);
+                            console.log("localStorage MaxLv changed", perkMaxLv);
+                    });
+                    //]]>
+                </script>
+            </dd>
+        </dl>
 
-	localStorage.setItem("storageMin", perkMinLv);
-	console.log("localStorage MinLv changed", perkMinLv)
- 
-});
-//]]>
-</script>
-</dd>
+        <dl>
+            <dt title="Kick Perk"><label title="Checked perk will be kicked.">Kick Perk</label></dt>
+            <label><input type="checkbox" name="kickperks" value="Berserker">Berserker</label>
+            <label><input type="checkbox" name="kickperks" value="Commando">Commando</label>
+            <label><input type="checkbox" name="kickperks" value="Support">Support</label>
+            <label><input type="checkbox" name="kickperks" value="Field Medic">Field Medic</label>
+            <label><input type="checkbox" name="kickperks" value="Demolitionist">Demolitionist</label>
+            <label><input type="checkbox" name="kickperks" value="Firebug">Firebug</label>
+            <label><input type="checkbox" name="kickperks" value="Gunslinger">Gunslinger</label>
+            <label><input type="checkbox" name="kickperks" value="Sharpshooter">Sharpshooter</label>
+            <label><input type="checkbox" name="kickperks" value="SWAT">SWAT</label>
+            <label><input type="checkbox" name="kickperks" value="Survivalist">Survivalist</label>
+            <script type="text/javascript">
+                //<![CDATA[
+                $(document).ready(function(){
+                    $('input[name="kickperks"]:checked').each(function(){
+                        this.checked = false;
+                    });
 
-<dt title="Maximum Perk Level"><label for="autokick_MaximumPerkLevel" title="Everyone above this level will be kicked.">Allow Maximum Perk Level</label></dt>
-<dd class="">
-<select id="autokick_MaximumPerkLevel">
-</select>
-<script type="text/javascript">
-//<![CDATA[
-$( document ).ready(function() {
+                    $('input[name="kickperks"]').each(function(){
+                        if(arrKickperk.includes(this.value) ){
+                            this.checked = true;
+                            $(this).parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
+                        }
+                    });
 
-	for(var i=0; i<=25; i++){
+                });
 
-		$("#autokick_MaximumPerkLevel").append($("<option>").val(i).text(i) );
+                $('input[name="kickperks"]').change(function(){
+                    var hashPerk = {
+                        Berserker:0,
+                        Commando:1,
+                        Support:2,
+                        "Field Medic":3,
+                        Demolitionist:4,
+                        Firebug:5,
+                        Gunslinger:6,
+                        Sharpshooter:7,
+                        SWAT:8,
+                        Survivalist:9
+                    };
+                    var perkIndex = hashPerk[this.value];console.log("perkIndex =", perkIndex);
 
-	}
+                    if($(this).is(':checked') == true){
+                        arrKickperk[perkIndex] = this.value;
+                        $(this).parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
+                    }else{
+                        arrKickperk[perkIndex] = "anonymous";
+                        $(this).parent('label').css('color','');
+                    }
 
-	$('#autokick_MaximumPerkLevel').val(perkMaxLv);
+                    var jsonKickperk = JSON.stringify(arrKickperk);console.log(jsonKickperk);
+                    localStorage.setItem("storageKickperk", jsonKickperk);
+                });
+                //]]>
+            </script>
+        </dl>
+        <dl>
+            <dt title="Allow All Perks from last wave until the Boss wave">
+                <label title="Keep to Auto-Kick by perk level">
+                    Allow All Perks from last wave until the Boss wave
+                </label>
+            </dt>
+            <label><input type="checkbox" name="allow-last">Enable</label>
+        </dl>
+        <script type="text/javascript">
+            //<![CDATA[
+            $(document).ready(function(){
+                $('input[name="allow-last"]')[0].checked = allowLast;
+                if(allowLast){
+                    $('input[name="allow-last"]').parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
+                }
+            });
 
-});
-
-$('#autokick_MaximumPerkLevel').change(function(){
- 
-	 	var newLv = this.value;
-
-	 	perkMaxLv = (!newLv) ? 25 : parseInt(newLv);
-
-		localStorage.setItem("storageMax", perkMaxLv);
-		console.log("localStorage MaxLv changed", perkMaxLv);
-});
-//]]>
-</script>
-</dd>
-</dl>
-
-<dl>
-<dt title="Kick Perk"><label title="Checked perk will be kicked.">Kick Perk</label></dt>
-<label><input type="checkbox" name="kickperks" value="Berserker">Berserker</label>
-<label><input type="checkbox" name="kickperks" value="Commando">Commando</label>
-<label><input type="checkbox" name="kickperks" value="Support">Support</label>
-<label><input type="checkbox" name="kickperks" value="Field Medic">Field Medic</label>
-<label><input type="checkbox" name="kickperks" value="Demolitionist">Demolitionist</label>
-<label><input type="checkbox" name="kickperks" value="Firebug">Firebug</label>
-<label><input type="checkbox" name="kickperks" value="Gunslinger">Gunslinger</label>
-<label><input type="checkbox" name="kickperks" value="Sharpshooter">Sharpshooter</label>
-<label><input type="checkbox" name="kickperks" value="SWAT">SWAT</label>
-<label><input type="checkbox" name="kickperks" value="Survivalist">Survivalist</label>
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-
-	$('input[name="kickperks"]:checked').each(function(){
-		this.checked = false;
-	});
-
-	$('input[name="kickperks"]').each(function(){
-
-		if(arrKickperk.includes(this.value) ){
-
-			this.checked = true;
-
-			$(this).parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
-
-		}
-
-	});
-
-});
-
-$('input[name="kickperks"]').change(function(){
-
-	var hashPerk = {Berserker:0, Commando:1, Support:2, "Field Medic":3, Demolitionist:4, Firebug:5, Gunslinger:6, Sharpshooter:7, SWAT:8, Survivalist:9};
-
-	var perkIndex = hashPerk[this.value];console.log("perkIndex =", perkIndex);
-
-	if($(this).is(':checked') == true){
-
-		arrKickperk[perkIndex] = this.value;
-
-		$(this).parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
-
-	}else{
-
-		arrKickperk[perkIndex] = "anonymous";
-
-		$(this).parent('label').css('color','');
-
-	}
-
-	var jsonKickperk = JSON.stringify(arrKickperk);console.log(jsonKickperk);
-	localStorage.setItem("storageKickperk", jsonKickperk);
-
-});
-//]]>
-</script>
-</dl>
-<dl>
-	<dt title="Allow All Perks from last wave until the Boss wave"><label title="Keep to Auto-Kick by perk level">Allow All Perks from last wave until the Boss wave</label></dt>
-	<label><input type="checkbox" name="allow-last">Enable</label>
-</dl>
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-	$('input[name="allow-last"]')[0].checked = allowLast;
-
-	if(allowLast){
-		$('input[name="allow-last"]').parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
-	}
-});
-
-$('input[name="allow-last"]').change(function() {
-	if($(this).is(':checked') === true){
-		localStorage.setItem("storageAllowLast", 'true');
-		$(this).parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
-		console.log("localStorage AllowLast changed", 'true');
-	}else{
-		localStorage.setItem("storageAllowLast", 'false');
-		$(this).parent('label').css('color','');
-		console.log("localStorage AllowLast changed", 'false');
-	}
-});
-//]]>
-</script>
+            $('input[name="allow-last"]').change(function() {
+                if($(this).is(':checked') === true){
+                    localStorage.setItem("storageAllowLast", 'true');
+                    $(this).parent('label').css({'color':'#c28282', 'text-shadow':'0px 0px 2px #964949'});
+                    console.log("localStorage AllowLast changed", 'true');
+                }else{
+                    localStorage.setItem("storageAllowLast", 'false');
+                    $(this).parent('label').css('color','');
+                    console.log("localStorage AllowLast changed", 'false');
+                }
+            });
+            //]]>
+        </script>
+    </div>
 </div>
-</div>
+<!-- /kf2-autokick -->
 
 <h2><%page.title%></h2>
 <div id="consoleCommand" class="section">

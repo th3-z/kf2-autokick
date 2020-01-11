@@ -10,8 +10,10 @@
 <tr>
     <th>&#160;</th>
     <th><a href="<%page.fulluri%>?sortby=name&amp;reverse=<%reverse.name%>" class="sortable <%sorted.name%>">Player name</a></th>
+    <!-- kf2-autokick -->
     <th>Perk</th>
     <th>Level</th>
+    <!-- /kf2-autokick -->
     <th><a href="<%page.fulluri%>?sortby=ping&amp;reverse=<%reverse.ping%>" class="sortable <%sorted.ping%>">Ping</a></th>
     <th>IP</th>
     <th title="The unique ID for this game account.">Unique Net ID</th>
@@ -87,6 +89,11 @@ function ajaxError(XMLHttpRequest, textStatus, errorThrown) {
 </script>
 
 </div>
-<span class="kf2waveinfo" data-kf2waveinfo="<%wave.num%>,<%wave.max%>">
+<!-- kf2-autokick -->
+<span 
+    class="kf2waveinfo"
+    data-kf2waveinfo="<%wave.num%>,<%wave.max%>"
+></span>
+<!-- /kf2-autokick -->
 <!-- #include file="navigation.inc" -->
 <!-- #include file="footer.inc" -->
