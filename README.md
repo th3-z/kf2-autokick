@@ -19,14 +19,14 @@ compatible with other userscript addons such as Tampermonkey.
     or [Chrome](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag).
 2. Open Violentmonkey's dashboard :gear:.
 3. Open the settings tab.
-4. Click 'Import from zip' and open `kf2-auto-kick-2.1.0.zip`.
+4. Click 'Import from zip' and open `kf2-autokick-2.1.0.zip`.
 
 ### Server setup
 
 1. Using a file browser, navigation to your Killing Floor 2 server install
     location.
-2. Extract `kf2-auto-kick-2.1.0.zip` somewhere convenient.
-2. Merge the provided `ServerAdmin` folder from `kf2-auto-kick-2.1.0.zip` with
+2. Extract `kf2-autokick-2.1.0.zip` somewhere convenient.
+2. Merge the provided `ServerAdmin` folder from `kf2-autokick-2.1.0.zip` with
     `kf2-server\KFGame\Web\ServerAdmin`.
 3. Restart your Killing Floor 2 server.
 
@@ -46,7 +46,7 @@ does not matter which page you are on.
 
 1. Navigate to the webadmin panel (default: http://localhost:8080)
 2. Open the 'Management Console' tab
-2. Adjust the level and perk auto-kick settings as required, the new settings will apply after a few seconds.
+2. Adjust the level and perk autokick settings as required, the new settings will apply after a few seconds.
 
 Settings are stored per-server so multiple servers can be managed
 independently.
@@ -55,4 +55,4 @@ independently.
 ## Changes since pedr0's release
 
 * Fix issue with kicking players with multibyte chars in their name
-* No longer have to keep the 'auto-kick' page open
+* No longer have to keep the 'autokick' page open

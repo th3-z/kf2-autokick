@@ -21,7 +21,7 @@
             "orig_excludes":[],
             "orig_includes":[],
             "orig_matches":[
-                "http://*/ServerAdmin/*"
+                "*://*/ServerAdmin/*"
             ],
             "orig_noframes":true,
             "orig_run_at":"document-idle",
@@ -37,7 +37,7 @@
         "position":1
     },
     "meta": {
-        "name":"kf2-auto-kick",
+        "name":"kf2-autokick",
         "uuid":"64fed72f-7fa8-4c59-b438-f8db58050f91",
         "modified":1568117439911
     }

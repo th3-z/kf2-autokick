@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         kf2-auto-kick
+// @name         kf2-autokick
 // @namespace    monkey
 // @version      2.0
 // @description  auto kick Level and Perk
-// @author       BEROCHlU
-// @match        http://*/ServerAdmin/*
+// @author       Various
+// @match        *://*/ServerAdmin/*
 // @grant        none
 // @noframes
 // ==/UserScript==
@@ -32,7 +32,7 @@ let g_time_id;
 
         const paramchat = new URLSearchParams();
         paramchat.set('ajax', '1');
-        paramchat.set('message', `auto-kick: ${gamer.perkName}-${gamer.perkLevel}`);
+        paramchat.set('message', `autokick: ${gamer.perkName}-${gamer.perkLevel}`);
         paramchat.set('teamsay', '-1');
 
         const promises = [
